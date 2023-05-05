@@ -135,8 +135,8 @@ class DigitClassificationModel(object):
     working on this part of the project.)
     """
     def __init__(self):
-        # # Initialize your model parameters here
-        # "*** YOUR CODE HERE ***"
+        # Initialize your model parameters here
+        "*** YOUR CODE HERE ***"
         # self.w1 = nn.Parameter(784, 200)
         # # self.w2 = nn.Parameter(200, 200)
         # self.w2 = nn.Parameter(200, 10)
