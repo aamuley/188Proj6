@@ -1,4 +1,5 @@
 import nn
+import numpy as np
 
 class PerceptronModel(object):
     def __init__(self, dimensions):
@@ -27,6 +28,8 @@ class PerceptronModel(object):
         Returns: a node containing a single number (the score)
         """
         "*** YOUR CODE HERE ***"
+        score = nn.DotProduct(x, self.get_weights())
+        return score
 
     def get_prediction(self, x):
         """
@@ -34,14 +37,27 @@ class PerceptronModel(object):
 
         Returns: 1 or -1
         """
-        "*** YOUR CODE HERE ***"
+        dot = nn.as_scalar(self.run(x))
+        if (dot >= 0): 
+            return 1
+        else: 
+            return -1
+
 
     def train(self, dataset):
         """
         Train the perceptron until convergence.
         """
-        "*** YOUR CODE HERE ***"
-
+        data = dataset.iterate_once(1)
+        updatedThisIter = True
+        while updatedThisIter:
+            updatedThisIter = False
+            for x, y in dataset.iterate_once(1):
+                if nn.as_scalar(y) != self.get_prediction(x):
+                    updatedThisIter = True
+                    nn.Parameter.update(self.w,x,nn.as_scalar(y))
+        
+        return 
 class RegressionModel(object):
     """
     A neural network model for approximating a function that maps from real
