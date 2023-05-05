@@ -138,11 +138,11 @@ class DigitClassificationModel(object):
         # Initialize your model parameters here
         "*** YOUR CODE HERE ***"
         self.w1 = nn.Parameter(784, 200)
-        # self.w2 = nn.Parameter(200, 200)
         self.w2 = nn.Parameter(200, 10)
+        # self.w3 = nn.Parameter(20, 10)
         self.b1 = nn.Parameter(1, 200)
-        # self.b2 = nn.Parameter(1, 200)
         self.b2 = nn.Parameter(1, 10)
+        # self.b3 = nn.Parameter(1, 10)
 
     def run(self, x):
         """
@@ -195,15 +195,15 @@ class DigitClassificationModel(object):
         # loss = nn.as_scalar(self.get_loss(nn.Constant(dataset.x),nn.Constant(dataset.y)))
         val_acc = dataset.get_validation_accuracy()
         while(val_acc < 0.98):
-            for x, y in dataset.iterate_once(1):
-                calc_loss = self.get_loss(nn.Constant(dataset.x),nn.Constant(dataset.y))
+            for x, y in dataset.iterate_once(200):
+                calc_loss = self.get_loss(x, y)
                 gw1, gw2, gb1, gb2 = nn.gradients(calc_loss, [self.w1, self.w2, self.b1, self.b2])
                 self.w1.update(gw1, -0.5)
                 self.w2.update(gw2, -0.5)
-                # self.w3.update(gw3, -0.5)
+                # self.w3.update(gw3, -0.2)
                 self.b1.update(gb1, -0.5)
                 self.b2.update(gb2, -0.5)
-                # self.b3.update(gb3, -0.5)
+                # self.b3.update(gb3, -0.2)
                 val_acc = dataset.get_validation_accuracy()
                 # loss = nn.as_scalar(self.get_loss(nn.Constant(dataset.x),nn.Constant(dataset.y)))
 
