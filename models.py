@@ -135,14 +135,14 @@ class DigitClassificationModel(object):
     working on this part of the project.)
     """
     def __init__(self):
-        # Initialize your model parameters here
-        "*** YOUR CODE HERE ***"
-        self.w1 = nn.Parameter(784, 200)
-        # self.w2 = nn.Parameter(200, 200)
-        self.w2 = nn.Parameter(200, 10)
-        self.b1 = nn.Parameter(1, 200)
-        # self.b2 = nn.Parameter(1, 200)
-        self.b2 = nn.Parameter(1, 10)
+        # # Initialize your model parameters here
+        # "*** YOUR CODE HERE ***"
+        # self.w1 = nn.Parameter(784, 200)
+        # # self.w2 = nn.Parameter(200, 200)
+        # self.w2 = nn.Parameter(200, 10)
+        # self.b1 = nn.Parameter(1, 200)
+        # # self.b2 = nn.Parameter(1, 200)
+        # self.b2 = nn.Parameter(1, 10)
 
     def run(self, x):
         """
@@ -159,11 +159,11 @@ class DigitClassificationModel(object):
                 (also called logits)
         """
         "*** YOUR CODE HERE ***"
-        z1_reg = nn.Linear(x ,self.w1)
-        z1 = nn.AddBias(z1_reg,self.b1)
-        a1 = nn.ReLU(z1)
-        z2_reg = nn.Linear(a1,self.w2)
-        z2 = nn.AddBias(z2_reg,self.b2)
+        # z1_reg = nn.Linear(x ,self.w1)
+        # z1 = nn.AddBias(z1_reg,self.b1)
+        # a1 = nn.ReLU(z1)
+        # z2_reg = nn.Linear(a1,self.w2)
+        # z2 = nn.AddBias(z2_reg,self.b2)
         # a2 = nn.ReLU(z2)
         # z3_reg = nn.Linear(a2,self.w3)
         # z3 = nn.AddBias(z3_reg,self.b3)
@@ -184,27 +184,27 @@ class DigitClassificationModel(object):
         Returns: a loss node
         """
         "*** YOUR CODE HERE ***"
-        x_batch = self.run(x)
-        return nn.SoftmaxLoss(x_batch, y)
+        # x_batch = self.run(x)
+        # return nn.SoftmaxLoss(x_batch, y)
 
     def train(self, dataset):
         """
         Trains the model.
         """
         "*** YOUR CODE HERE ***"
-        # loss = nn.as_scalar(self.get_loss(nn.Constant(dataset.x),nn.Constant(dataset.y)))
-        val_acc = dataset.get_validation_accuracy()
-        while(val_acc < 0.98):
-            for x, y in dataset.iterate_once(1):
-                calc_loss = self.get_loss(nn.Constant(dataset.x),nn.Constant(dataset.y))
-                gw1, gw2, gb1, gb2 = nn.gradients(calc_loss, [self.w1, self.w2, self.b1, self.b2])
-                self.w1.update(gw1, -0.5)
-                self.w2.update(gw2, -0.5)
-                # self.w3.update(gw3, -0.5)
-                self.b1.update(gb1, -0.5)
-                self.b2.update(gb2, -0.5)
-                # self.b3.update(gb3, -0.5)
-                val_acc = dataset.get_validation_accuracy()
+        # # loss = nn.as_scalar(self.get_loss(nn.Constant(dataset.x),nn.Constant(dataset.y)))
+        # val_acc = dataset.get_validation_accuracy()
+        # while(val_acc < 0.98):
+        #     for x, y in dataset.iterate_once(1):
+        #         calc_loss = self.get_loss(nn.Constant(dataset.x),nn.Constant(dataset.y))
+        #         gw1, gw2, gb1, gb2 = nn.gradients(calc_loss, [self.w1, self.w2, self.b1, self.b2])
+        #         self.w1.update(gw1, -0.5)
+        #         self.w2.update(gw2, -0.5)
+        #         # self.w3.update(gw3, -0.5)
+        #         self.b1.update(gb1, -0.5)
+        #         self.b2.update(gb2, -0.5)
+        #         # self.b3.update(gb3, -0.5)
+        #         val_acc = dataset.get_validation_accuracy()
                 # loss = nn.as_scalar(self.get_loss(nn.Constant(dataset.x),nn.Constant(dataset.y)))
 
 class LanguageIDModel(object):
@@ -224,7 +224,9 @@ class LanguageIDModel(object):
         self.languages = ["English", "Spanish", "Finnish", "Dutch", "Polish"]
 
         # Initialize your model parameters here
+
         "*** YOUR CODE HERE ***"
+
 
     def run(self, xs):
         """
